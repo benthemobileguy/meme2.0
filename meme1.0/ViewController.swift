@@ -4,6 +4,13 @@
 
 import UIKit
 
+//
+//  Created by Ben on 2023/06/23.
+//  Copyright © 2023 Ben. All rights reserved.
+//
+
+import UIKit
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var navigator: UINavigationBar!
@@ -42,7 +49,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        camera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        // Disable camera button on the simulator
+        #if targetEnvironment(simulator)
+            camera.isEnabled = false
+        #else
+            camera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        #endif
+        
         topText.delegate = self
         bottomText.delegate = self
     }
