@@ -10,14 +10,13 @@ import UIKit
 import Foundation
 
 class DetailViewController: UIViewController {
-
-        var memes: Meme2!
-        @IBOutlet weak var im: UIImageView!
-        
+    var memes: Meme2!
+    @IBOutlet weak var im: UIImageView!
+    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         im.image = memes.memedImage
+        im.contentMode = .scaleAspectFit
         self.tabBarController?.tabBar.isHidden = true
-        
     }
 }
